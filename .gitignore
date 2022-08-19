@@ -144,11 +144,5 @@ dist
 # End of https://www.toptal.com/developers/gitignore/api/node
 
 
-/express-router
-/express-tutorial
-/npm-project
-/nunjucks-tutorial
-/postBox
-/practice
-/sample-api
-/sequelize
+/express-example
+
