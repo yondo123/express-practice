@@ -6,7 +6,9 @@ const session = require('express-session');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const pageRouter = require('./routes/page');
+const authRouter = require('./routes/auth');
 const { sequelize } = require('./models/index.js');
+const passport = require('passport');
 
 dotenv.config();
 
@@ -46,8 +48,12 @@ app.use(
     })
 );
 
+/** 세션 공유 (passport) */
+app.use(passport.initialize());
+app.use(passport.session());
 /** Router 설정 */
 app.use('/', pageRouter);
+app.use('/auth', authRouter);
 
 //잘못된 요청
 app.use(function (req, res, next) {
