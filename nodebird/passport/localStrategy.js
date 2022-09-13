@@ -3,11 +3,10 @@ const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 
 const User = require('../models/user');
-const { Strategy } = require('passport-kakao');
 
-module.exports(function () {
+module.exports = function () {
     passport.use(
-        new Strategy(
+        new LocalStrategy(
             {
                 usernameField: 'email', //req.body.email
                 passwordField: 'password' //req.body.password
@@ -36,4 +35,4 @@ module.exports(function () {
             }
         )
     );
-});
+};
