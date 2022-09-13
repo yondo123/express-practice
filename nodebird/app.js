@@ -9,6 +9,7 @@ const pageRouter = require('./routes/page');
 const authRouter = require('./routes/auth');
 const { sequelize } = require('./models/index.js');
 const passport = require('passport');
+const passportConfig = require('./passport');
 
 dotenv.config();
 
@@ -30,7 +31,7 @@ sequelize
     .catch(function (err) {
         console.log(err);
     });
-
+passportConfig();
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
@@ -72,4 +73,5 @@ app.use(function (err, req, res, next) {
 
 app.listen(app.get('port'), function () {
     console.log(`${app.get('port')}👻 Server boot`);
+    console.log(process.env.KAKAO_TOKEN);
 });
