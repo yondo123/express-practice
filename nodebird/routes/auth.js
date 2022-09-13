@@ -2,11 +2,13 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
 const passport = require('passport');
+//로그인 상태 체크
+const { loginState, notLoginState } = require('./middlewares');
 
 const router = express.Router();
 
 //회원가입
-router.post('/join', async function (req, res, next) {
+router.post('/join', notLoginState, async function (req, res, next) {
     const { email, nick, password } = req.body;
     try {
         //기존 회원시 에러페이지 redirect
@@ -28,7 +30,7 @@ router.post('/join', async function (req, res, next) {
 });
 
 //로그인
-router.post('/login', function (req, res, next) {
+router.post('/login', notLoginState, function (req, res, next) {
     //strategy 파일에서 done함수 호출 시 콜백함수로 전달받아 수정된다.
     passport.authenticate('loacal', function (authError, user, info) {
         if (authError) {
@@ -50,7 +52,7 @@ router.post('/login', function (req, res, next) {
 });
 
 //로그아웃
-router.get('/logout', function (req, res) {
+router.get('/logout', loginState, function (req, res) {
     req.logOut();
     req.session.destroy(); //세션쿠키 제거
     req.redirect('/');
