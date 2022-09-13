@@ -32,7 +32,7 @@ router.post('/join', notLoginState, async function (req, res, next) {
 //로그인
 router.post('/login', notLoginState, function (req, res, next) {
     //strategy 파일에서 done함수 호출 시 콜백함수로 전달받아 수정된다.
-    passport.authenticate('loacal', function (authError, user, info) {
+    passport.authenticate('local', function (authError, user, info) {
         if (authError) {
             console.error(authError);
             return next(authError);
@@ -57,4 +57,18 @@ router.get('/logout', loginState, function (req, res) {
     req.session.destroy(); //세션쿠키 제거
     req.redirect('/');
 });
+
+//카카오 로그인
+router.get('/kakao', passport.authenticate('kakao'));
+
+//카카오 로그인 콜백
+router.get(
+    '/kakao/callback',
+    passport.authenticate('kakao', {
+        failureRedirect: '/'
+    }),
+    function (req, res) {
+        res.redirect('/');
+    }
+);
 module.exports = router;
