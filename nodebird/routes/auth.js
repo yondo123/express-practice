@@ -53,9 +53,13 @@ router.post('/login', notLoginState, function (req, res, next) {
 
 //로그아웃
 router.get('/logout', loginState, function (req, res) {
-    req.logOut();
-    req.session.destroy(); //세션쿠키 제거
-    req.redirect('/');
+    req.logout(function (err) {
+        if (err) {
+            return next(err);
+        }
+        req.session.destroy(); //세션쿠키 제거
+        res.redirect('/');
+    });
 });
 
 //카카오 로그인
@@ -64,9 +68,11 @@ router.get('/kakao', passport.authenticate('kakao'));
 //카카오 로그인 콜백
 router.get(
     '/kakao/callback',
+    //로그인 성공
     passport.authenticate('kakao', {
         failureRedirect: '/'
     }),
+    //로그인 실패
     function (req, res) {
         res.redirect('/');
     }
