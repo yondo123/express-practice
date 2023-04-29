@@ -142,8 +142,3 @@ dist
 .svelte-kit
 
 # End of https://www.toptal.com/developers/gitignore/api/node
-
-
-/express-example
-
-nodebird/config/config.json

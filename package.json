@@ -1,0 +1,19 @@
+{
+  "type": "module",
+  "name": "express-practice",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "nodemon --watch src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "homepage": "https://github.com/yondo123/express-practice#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.8"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
