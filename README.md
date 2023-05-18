@@ -18,4 +18,4 @@ Node.js에서 기본적으로 제공하는 내장 모듈에 대한 예제입니�
 Express 프레임워크를 설치하고 실행하는 방법과 간단한 요청 예제입니다.
 
 [**Router Tutorial**](https://github.com/yondo123/express-practice/tree/main/router-tutorial)  
- Router 기능을 사용하는 방법을 보여줍니다. Router 연속성, 데이터 공유, 에러 핸들링 등을 실습합니다.
+ 기본적인 라우팅과 미들웨어 기능 예제 입니다. 미들웨어 연속성, 데이터 공유, 에러 핸들링 예제입니다.
